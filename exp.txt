@@ -1,0 +1,8 @@
+--project=hw5
+--sequence_length=1574
+--lrate=0.00001
+--epochs=400
+--patience=100
+--min_delta=0
+--shuffle=100
+--save_model
