@@ -13,10 +13,10 @@ def create_parser():
     Create argument parser
     '''
     # Parse the command-line arguments
-    parser = argparse.ArgumentParser(description='HW5', fromfile_prefix_chars='@')
+    parser = argparse.ArgumentParser(description='HW6', fromfile_prefix_chars='@')
 
     # High-level info for WandB
-    parser.add_argument('--project', type=str, default='hw5', help='WandB project name')
+    parser.add_argument('--project', type=str, default='hw6', help='WandB project name')
 
     # High-level commands
     parser.add_argument('--check', action='store_true', help='Check results for completeness')
@@ -34,7 +34,7 @@ def create_parser():
     parser.add_argument('--exp_type', type=str, default=None, help="Experiment type")
     
     parser.add_argument('--label', type=str, default=None, help="Extra label to add to output files")
-    parser.add_argument('--dataset', type=str, default='/home/fagg/datasets/core50', help='Data set directory')
+    parser.add_argument('--dataset', type=str, default='', help='Data set directory')
 
     parser.add_argument('--rotation', type=int, default=0, help='Rotation to use for splits')
     parser.add_argument('--results_path', type=str, default='./results', help='Results directory')
@@ -47,15 +47,12 @@ def create_parser():
     parser.add_argument('--n_embedding', type=int, default=16, help='Size of embeddings')
 
     # Recurrent parameters
-    parser.add_argument('--rnn_layers', nargs='+', type=int, default=[10, 5], help='Number of units per rnn layer (sequence of ints)')
-    parser.add_argument('--rnn_activation', type=str, default='elu', help='Activation for rnn units')
+    parser.add_argument('--gru_layers', nargs='+', type=int, default=[10, 5], help='Number of units per rnn layer (sequence of ints)')
+    parser.add_argument('--gru_activation', type=str, default='elu', help='Activation for rnn units')
     parser.add_argument('--unroll', action='store_true', help='Unroll rnn')
     parser.add_argument('--bidirectional', action='store_true', help='Make RNN layers bidirectional')
 
-    # Convolutional parameters
-    parser.add_argument('--conv_layers', nargs='+', type=int, default=[10, 5], help='Number of filters per convolutional layer (sequence of ints)')
-    parser.add_argument('--kernel_sizes', nargs='+', type=int, default=[10, 5], help='Kernel size per convolutional layer (sequence of ints)')
-    parser.add_argument('--conv_activation', type=str, default='elu', help='Activation function for convolutional layers')
+    # Transformer parameters
 
     # Recurrent and convolutional parameters
     parser.add_argument('--pool', type=int, default=2, help='Max pooling size')
@@ -66,7 +63,6 @@ def create_parser():
     parser.add_argument('--batch_normalization', action='store_true', help='Turn on batch normalization')
 
     # Regularization parameters
-    parser.add_argument('--spatial_dropout', type=float, default=None, help='Dropout rate for convolutional layers')
     parser.add_argument('--dropout', type=float, default=None, help='Dropout rate for dense layers')
     parser.add_argument('--L1_regularization', '--l1', type=float, default=None, help="L1 regularization parameter")
     parser.add_argument('--L2_regularization', '--l2', type=float, default=None, help="L2 regularization parameter")

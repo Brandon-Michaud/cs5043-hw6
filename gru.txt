@@ -1,10 +1,8 @@
---exp_type=rnn
---label=rnn
---rnn_layers
-32
-16
-8
---rnn_activation=tanh
+--exp_type=gru
+--label=gru
+--gru_layers
+128
+--gru_activation=tanh
 --pool=2
 --padding=valid
 --dense_layers
@@ -14,5 +12,4 @@
 --dense_activation=tanh
 --bidirectional
 --unroll
---n_embedding=16
 --grad_clip=0.001
