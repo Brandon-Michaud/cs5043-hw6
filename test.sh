@@ -17,4 +17,4 @@ conda activate tf
 module load cuDNN/8.9.2.26-CUDA-12.2.0
 
 
-python hw5_base.py -vv @exp.txt @rnn.txt --exp_index $SLURM_ARRAY_TASK_ID --cpus_per_task $SLURM_CPUS_PER_TASK --dataset /home/fagg/datasets/pfam
+python hw6_base.py -vv @exp.txt @rnn.txt --exp_index $SLURM_ARRAY_TASK_ID --cpus_per_task $SLURM_CPUS_PER_TASK --dataset /home/fagg/datasets/pfam
