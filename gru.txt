@@ -8,9 +8,6 @@
 --dense_layers
 128
 64
-32
---dense_activation=tanh
---bidirectional
+--dense_activation=elu
 --unroll
 --grad_clip=0.001
---nogo
