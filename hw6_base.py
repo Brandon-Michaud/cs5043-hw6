@@ -51,6 +51,7 @@ from hw6_parser import *
 
 # You need to provide this yourself
 from gru_classifier import *
+from mha_classifier import *
 
 
 def exp_type_to_hyperparameters(args):
