@@ -9,5 +9,4 @@
 128
 64
 --dense_activation=elu
---unroll
 --grad_clip=0.001
