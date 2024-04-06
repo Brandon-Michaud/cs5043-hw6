@@ -244,6 +244,7 @@ def execute_exp(args=None, multi_gpus=False):
                                   rotation=args.rotation,
                                   version='B')
     n_tokens = data_set_dict['n_tokens']
+    print(f'n_tokens: {n_tokens}')
     n_classes = data_set_dict['n_classes']
 
     ds_train, ds_validation, ds_testing = create_tf_datasets(dat=data_set_dict,

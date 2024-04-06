@@ -13,5 +13,4 @@
 --bidirectional
 --unroll
 --grad_clip=0.001
---render
 --nogo
