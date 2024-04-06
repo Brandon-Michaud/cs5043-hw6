@@ -1,7 +1,7 @@
 --exp_type=gru
 --label=gru
 --gru_layers
-128
+10
 --gru_activation=tanh
 --pool=2
 --padding=valid
