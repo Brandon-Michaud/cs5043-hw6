@@ -12,9 +12,6 @@ are the same size as the token encoding vectors; the two are added together.
 Source: Hands-On Machine Learning, p 558
 
 '''
-from tensorflow import keras
-import numpy as np
-import tensorflow as tf
 class PositionalEncoding(keras.layers.Layer):
     def __init__(self, max_steps:int, max_dims:int, combination_type:str='add',
                  dtype=tf.float32, **kwargs):
