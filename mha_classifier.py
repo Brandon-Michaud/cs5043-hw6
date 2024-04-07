@@ -29,7 +29,7 @@ def create_simple_mha(input_size,
     tensor = PositionalEncoding(max_steps=input_size, max_dims=n_embedding)
 
     # MHA
-    tensor = MultiHeadAttention(num_heads=num_heads, key_dim=key_dim)(tensor, tensor)
+    tensor = MultiHeadAttention(num_heads=num_heads, key_dim=key_dim)(tensor.output, tensor.output)
 
     tensor = GlobalMaxPooling1D()(tensor)
 
