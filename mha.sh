@@ -14,8 +14,8 @@
 #SBATCH --array=0
 
 . /home/fagg/tf_setup.sh
-conda activate dnn_2024_02
+conda activate tf
 module load cuDNN/8.9.2.26-CUDA-12.2.0
 
 
-python hw6_base.py -vv @exp.txt @oscer.txt @gru.txt --exp_index $SLURM_ARRAY_TASK_ID --cpus_per_task $SLURM_CPUS_PER_TASK --dataset /home/fagg/datasets/pfam
+python hw6_base.py -vv @exp.txt @oscer.txt @mha.txt --gpu --exp_index $SLURM_ARRAY_TASK_ID --cpus_per_task $SLURM_CPUS_PER_TASK --dataset /home/fagg/datasets/pfam
