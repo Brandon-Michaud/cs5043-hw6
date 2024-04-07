@@ -15,3 +15,9 @@
 64
 --dense_activation=elu
 --grad_clip=0.001
+--batch=4096
+--steps_per_epoch=100
+--repeat
+--prefetch=8
+--num_parallel_calls=16
+--cache=
