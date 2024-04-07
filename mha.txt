@@ -7,11 +7,10 @@
 64
 --dense_activation=elu
 --grad_clip=0.001
+--gpu
 --batch=64
 --steps_per_epoch=100
 --repeat
 --prefetch=8
 --num_parallel_calls=16
 --cache=
---nogo
---render
