@@ -39,7 +39,7 @@ def create_simple_mha(input_size,
                     activation=pp_activation)(tensor)
 
     # Positional encoding
-    tensor = PositionalEncoding(max_steps=input_size, max_dims=n_embedding)(tensor)
+    tensor = PositionalEncoding(max_steps=input_size, max_dims=pp_filters)(tensor)
 
     # Multi-head attention
     tensor = MultiHeadAttention(num_heads=num_heads, key_dim=key_dim)(tensor, tensor)
