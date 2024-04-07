@@ -1,7 +1,6 @@
 #!/bin/bash
 #
-#SBATCH --gres=gpu:1
-#SBATCH --partition=disc_dual_a100_students,gpu,gpu_a100
+#SBATCH --partition=disc_dual_a100_students
 #SBATCH --cpus-per-task=64
 #SBATCH --mem=80G
 #SBATCH --output=outputs/hw6_%j_stdout.txt
@@ -15,7 +14,6 @@
 
 . /home/fagg/tf_setup.sh
 conda activate tf
-module load cuDNN/8.9.2.26-CUDA-12.2.0
 
 
 python hw6_base.py -vv @exp.txt @mha.txt --exp_index $SLURM_ARRAY_TASK_ID --cpus_per_task $SLURM_CPUS_PER_TASK --dataset /home/fagg/datasets/pfam
