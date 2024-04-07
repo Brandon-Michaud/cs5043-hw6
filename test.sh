@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-#SBATCH --partition=debug
+#SBATCH --partition=debug,debug_5min
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=1G
 #SBATCH --output=outputs/hw6_%j_stdout.txt
 #SBATCH --error=outputs/hw6_%j_stderr.txt
-#SBATCH --time=00:30:00
+#SBATCH --time=00:05:00
 #SBATCH --job-name=hw6
 #SBATCH --mail-user=brandondmichaud@ou.edu
 #SBATCH --mail-type=ALL
