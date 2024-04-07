@@ -23,8 +23,9 @@ def create_simple_mha(input_size,
         lambda_regularization = tf.keras.regularizers.l2(lambda_regularization)
 
     # Create embeddings
-    tensor = Embedding(input_dim=n_tokens, output_dim=n_embedding, input_length=input_size)
+    tensor = Input(shape=(input_size,))
     input_tensor = tensor
+    tensor = Embedding(input_dim=n_tokens, output_dim=n_embedding, input_length=input_size)(tensor)
 
     tensor = PositionalEncoding(max_steps=input_size, max_dims=n_embedding)(tensor)
 
