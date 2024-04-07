@@ -1,13 +1,18 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import GRU, Bidirectional, AveragePooling1D, Dense, Embedding
+from tensorflow.keras.layers import GRU, Bidirectional, AveragePooling1D, Dense, Embedding, Conv1D
 
 
 def create_simple_gru(input_size,
                       n_classes,
                       n_tokens,
                       n_embedding,
+                      pp_filters,
+                      pp_kernel_size,
+                      pp_strides,
+                      pp_padding,
+                      pp_activation,
                       gru_layers,
                       dense_layers,
                       activation_gru=None,
@@ -49,6 +54,10 @@ def create_simple_gru(input_size,
 
     # Create embeddings
     model.add(Embedding(input_dim=n_tokens, output_dim=n_embedding, input_length=input_size))
+
+    # Preprocessing
+    model.add(Conv1D(filters=pp_filters, kernel_size=pp_kernel_size, strides=pp_strides, padding=pp_padding,
+                     activation=pp_activation))
 
     # RNN layers
     for i, n_neurons in enumerate(gru_layers):

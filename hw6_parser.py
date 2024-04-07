@@ -46,7 +46,14 @@ def create_parser():
     parser.add_argument('--sequence_length', type=int, default=10, help='Maximum length of sequence')
     parser.add_argument('--n_embedding', type=int, default=16, help='Size of embeddings')
 
-    # Recurrent parameters
+    # Preprocessing parameters
+    parser.add_argument('--pp_filters', type=int, default=64, help='Number of filters in preprocessing')
+    parser.add_argument('--pp_kernel_size', type=int, default=4, help='Kernel size in preprocessing')
+    parser.add_argument('--pp_strides', type=int, default=4, help='Strides in preprocessing')
+    parser.add_argument('--pp_padding', type=str, default='valid', help='Padding in preprocessing')
+    parser.add_argument('--pp_activation', type=str, default='elu', help='Activation in preprocessing')
+
+    # GRU parameters
     parser.add_argument('--gru_layers', nargs='+', type=int, default=[10, 5], help='Number of units per rnn layer (sequence of ints)')
     parser.add_argument('--gru_activation', type=str, default='elu', help='Activation for rnn units')
     parser.add_argument('--unroll', action='store_true', help='Unroll rnn')

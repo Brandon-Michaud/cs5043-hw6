@@ -1,7 +1,12 @@
 --exp_type=mha
 --label=mha
---num_heads=4
---key_dim=4
+--pp_filters=64
+--pp_kernel_size=4
+--pp_strides=4
+--pp_padding=valid
+--pp_activation=elu
+--num_heads=8
+--key_dim=8
 --dense_layers
 128
 64

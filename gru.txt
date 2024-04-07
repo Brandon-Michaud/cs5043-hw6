@@ -1,5 +1,10 @@
 --exp_type=gru
 --label=gru
+--pp_filters=64
+--pp_kernel_size=4
+--pp_strides=4
+--pp_padding=valid
+--pp_activation=elu
 --gru_layers
 10
 --gru_activation=tanh
