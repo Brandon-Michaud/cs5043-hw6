@@ -9,14 +9,10 @@ def create_simple_mha(input_size,
                       n_classes,
                       n_tokens,
                       n_embedding,
-                      gru_layers,
+                      num_heads,
+                      key_dim,
                       dense_layers,
-                      activation_gru=None,
                       activation_dense=None,
-                      unroll=True,
-                      bidirectional=False,
-                      pool_size=2,
-                      padding='valid',
                       lambda_regularization=None,
                       grad_clip=None,
                       lrate=0.0001,
@@ -28,24 +24,34 @@ def create_simple_mha(input_size,
 
     # Create embeddings
     tensor = Embedding(input_dim=n_tokens, output_dim=n_embedding, input_length=input_size)
+    input_tensor = tensor
+
+    tensor = PositionalEncoding(max_steps=input_size, max_dims=n_embedding)
 
     # MHA
-    tensor = MultiHeadAttention
+    tensor = MultiHeadAttention(num_heads=num_heads, key_dim=key_dim)(tensor, tensor)
+
+    tensor = GlobalMaxPooling1D()(tensor)
 
     # Dense layers
     for n_neurons in dense_layers:
-        model.add(Dense(units=n_neurons,
-                        activation=activation_dense,
-                        use_bias=True,
-                        kernel_initializer='random_uniform',
-                        bias_initializer='zeros',
-                        kernel_regularizer=lambda_regularization))
+        tensor = Dense(units=n_neurons,
+                       activation=activation_dense,
+                       use_bias=True,
+                       kernel_initializer='random_uniform',
+                       bias_initializer='zeros',
+                       kernel_regularizer=lambda_regularization)(tensor)
 
     # Output layer
-    model.add(Dense(units=n_classes,
-                    activation='softmax',
-                    kernel_initializer='random_uniform',
-                    kernel_regularizer=lambda_regularization))
+    tensor = Dense(units=n_classes,
+                   activation='softmax',
+                   kernel_initializer='random_uniform',
+                   kernel_regularizer=lambda_regularization)(tensor)
+
+    output_tensor = tensor
+
+    # Create model from data flow
+    model = Model(inputs=input_tensor, outputs=output_tensor)
 
     # The optimizer determines how the gradient descent is to be done
     opt = keras.optimizers.Adam(learning_rate=lrate, amsgrad=False, clipnorm=grad_clip)

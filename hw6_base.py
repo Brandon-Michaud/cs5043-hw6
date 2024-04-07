@@ -202,7 +202,19 @@ def create_classifier_network(args, n_classes, n_tokens):
                                  metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
     # Create CNN
     elif args.exp_type == 'mha':
-        print('mha')
+        return create_simple_mha(args.sequence_length,
+                                 n_classes,
+                                 n_tokens,
+                                 args.n_embedding,
+                                 args.num_heads,
+                                 args.key_dim,
+                                 args.dense_layers,
+                                 activation_dense=args.dense_activation,
+                                 lambda_regularization=args.L2_regularization,
+                                 grad_clip=args.grad_clip,
+                                 lrate=args.lrate,
+                                 loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+                                 metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
     else:
         assert False, f'unrecognized experiment type {args.exp_type}'
 
