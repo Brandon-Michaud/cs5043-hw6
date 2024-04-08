@@ -42,7 +42,8 @@ def create_simple_mha(input_size,
     tensor = PositionalEncoding(max_steps=input_size, max_dims=pp_filters)(tensor)
 
     # Multi-head attention
-    tensor = MultiHeadAttention(num_heads=num_heads, key_dim=key_dim)(tensor, tensor)
+    for nh, kd in zip(num_heads, key_dim):
+        tensor = MultiHeadAttention(num_heads=nh, key_dim=kd)(tensor, tensor)
 
     # Blend tokens
     tensor = GlobalMaxPooling1D()(tensor)
