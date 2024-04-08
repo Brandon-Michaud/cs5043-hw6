@@ -6,7 +6,8 @@
 --pp_padding=valid
 --pp_activation=elu
 --gru_layers
-10
+200
+100
 --gru_activation=tanh
 --pool=2
 --padding=valid

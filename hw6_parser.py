@@ -60,8 +60,8 @@ def create_parser():
     parser.add_argument('--bidirectional', action='store_true', help='Make RNN layers bidirectional')
 
     # Transformer parameters
-    parser.add_argument('--num_heads', type=int, default=4, help='Number of attention heads')
-    parser.add_argument('--key_dim', type=int, default=4, help='Number of embedded values examined each head')
+    parser.add_argument('--num_heads', nargs='+', type=int, default=[4], help='Number of attention heads per MHA')
+    parser.add_argument('--key_dim', nargs='+', type=int, default=[4], help='Number of embedded values examined each head per MHA')
 
     # Recurrent and convolutional parameters
     parser.add_argument('--pool', type=int, default=2, help='Max pooling size')

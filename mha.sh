@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#SBATCH --partition=disc_dual_a100_students
+#SBATCH --partition=disc_dual_a100_students,gpu,gpu_a100
 #SBATCH --cpus-per-task=64
 #SBATCH --mem=80G
 #SBATCH --output=outputs/hw6_%j_stdout.txt

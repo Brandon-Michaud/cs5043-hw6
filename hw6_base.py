@@ -155,21 +155,18 @@ def generate_fname(args, params_str):
         gc_str = 'gc_%0.6f_' % (args.grad_clip)
 
     if args.exp_type == 'gru':
-        return f'{args.results_path}/gru_rot_{args.rotation}'
-        # rnns_str = '_'.join(str(x) for x in args.rnn_layers)
-        # dense_layers_str = '_'.join(str(x) for x in args.dense_layers)
-        # return (f'{args.results_path}/{args.exp_type}_rnns_{rnns_str}_ract_{args.rnn_activation}_dense_'
-        #         f'{dense_layers_str}_dact_{args.dense_activation}_{sdo_str}{do_str}{l1_str}{l2_str}{gc_str}lrate_'
-        #         f'{args.lrate:0.6f}_rot_{args.rotation}')
+        grus_str = '_'.join(str(x) for x in args.gru_layers)
+        dense_layers_str = '_'.join(str(x) for x in args.dense_layers)
+        return (f'{args.results_path}/{args.exp_type}_grus_{grus_str}_gact_{args.gru_activation}_dense_'
+                f'{dense_layers_str}_dact_{args.dense_activation}_{do_str}{l1_str}{l2_str}{gc_str}lrate_'
+                f'{args.lrate:0.6f}_rot_{args.rotation}')
     elif args.exp_type == 'mha':
-        return f'{args.results_path}/mha_rot_{args.rotation}'
-        # conv_filter_str = '_'.join(str(x) for x in args.conv_layers)
-        # kernel_size_str = '_'.join(str(x) for x in args.kernel_sizes)
-        # dense_layers_str = '_'.join(str(x) for x in args.dense_layers)
-        # return (f'{args.results_path}/{args.exp_type}_filters_{conv_filter_str}_ksizes_{kernel_size_str}_pool_'
-        #         f'{args.pool}_pad_{args.padding}_cact_{args.conv_activation}_dense_{dense_layers_str}_dact_'
-        #         f'{args.dense_activation}_{sdo_str}{do_str}{l1_str}{l2_str}{gc_str}lrate_{args.lrate:0.6f}_rot_'
-        #         f'{args.rotation}')
+        num_heads_str = '_'.join(str(x) for x in args.num_heads)
+        key_dim_str = '_'.join(str(x) for x in args.key_dim)
+        dense_layers_str = '_'.join(str(x) for x in args.dense_layers)
+        return (f'{args.results_path}/{args.exp_type}_nheads_{num_heads_str}_kdims_{key_dim_str}'
+                f'_dense_{dense_layers_str}_dact_{args.dense_activation}_{do_str}{l1_str}{l2_str}{gc_str}'
+                f'lrate_{args.lrate:0.6f}_rot_{args.rotation}')
     else:
         assert False
 
