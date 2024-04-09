@@ -2,7 +2,7 @@
 --sequence_length=3934
 --n_embedding=16
 --lrate=0.0001
---epochs=200
+--epochs=500
 --patience=100
 --min_delta=0
 --shuffle=100
