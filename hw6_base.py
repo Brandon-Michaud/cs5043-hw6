@@ -154,18 +154,23 @@ def generate_fname(args, params_str):
     else:
         gc_str = 'gc_%0.6f_' % (args.grad_clip)
 
+    if args.min_delta == 0:
+        md_str = ''
+    else:
+        md_str = 'md_%0.6f_' % args.min_delta
+
     if args.exp_type == 'gru':
         grus_str = '_'.join(str(x) for x in args.gru_layers)
         dense_layers_str = '_'.join(str(x) for x in args.dense_layers)
         return (f'{args.results_path}/{args.exp_type}_grus_{grus_str}_gact_{args.gru_activation}_dense_'
-                f'{dense_layers_str}_dact_{args.dense_activation}_{do_str}{l1_str}{l2_str}{gc_str}lrate_'
+                f'{dense_layers_str}_dact_{args.dense_activation}_{do_str}{l1_str}{l2_str}{gc_str}{md_str}lrate_'
                 f'{args.lrate:0.6f}_rot_{args.rotation}')
     elif args.exp_type == 'mha':
         num_heads_str = '_'.join(str(x) for x in args.num_heads)
         key_dim_str = '_'.join(str(x) for x in args.key_dim)
         dense_layers_str = '_'.join(str(x) for x in args.dense_layers)
         return (f'{args.results_path}/{args.exp_type}_nheads_{num_heads_str}_kdims_{key_dim_str}'
-                f'_dense_{dense_layers_str}_dact_{args.dense_activation}_{do_str}{l1_str}{l2_str}{gc_str}'
+                f'_dense_{dense_layers_str}_dact_{args.dense_activation}_{do_str}{l1_str}{l2_str}{gc_str}{md_str}'
                 f'lrate_{args.lrate:0.6f}_rot_{args.rotation}')
     else:
         assert False
