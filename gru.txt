@@ -23,6 +23,4 @@
 --cache=
 --min_delta=0.001
 --patience=10
---render
---nogo
 --force
