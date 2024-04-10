@@ -25,9 +25,9 @@ def scatter_accuracies():
     plt.xlabel('GRU Accuracy')
     plt.ylabel('MHA Accuracy')
     plt.title('Model Accuracy')
+    plt.axis('square')
     plt.xlim(0.9, 1)
     plt.ylim(0.9, 1)
-    plt.axis('square')
     fig.savefig('figures/model_accuracies.png')
 
 
@@ -44,9 +44,9 @@ def scatter_epochs():
     plt.xlabel('GRU Epochs')
     plt.ylabel('MHA Epochs')
     plt.title('Model Epochs')
+    plt.axis('square')
     plt.xlim(20, 450)
     plt.ylim(20, 450)
-    plt.axis('square')
     fig.savefig('figures/model_epochs.png')
 
 
