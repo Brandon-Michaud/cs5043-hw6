@@ -59,11 +59,11 @@ def create_parser():
     parser.add_argument('--unroll', action='store_true', help='Unroll rnn')
     parser.add_argument('--bidirectional', action='store_true', help='Make RNN layers bidirectional')
 
-    # Transformer parameters
+    # MHA parameters
     parser.add_argument('--num_heads', nargs='+', type=int, default=[4], help='Number of attention heads per MHA')
     parser.add_argument('--key_dim', nargs='+', type=int, default=[4], help='Number of embedded values examined each head per MHA')
 
-    # Recurrent and convolutional parameters
+    # GRU and MHA parameters
     parser.add_argument('--pool', type=int, default=2, help='Max pooling size')
     parser.add_argument('--padding', type=str, default='valid', help='Padding type for convolutional layers')
     parser.add_argument('--dense_layers', nargs='+', type=int, default=[10, 5], help='Number of units per dense layer (sequence of ints)')

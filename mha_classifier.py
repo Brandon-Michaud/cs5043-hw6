@@ -23,6 +23,27 @@ def create_simple_mha(input_size,
                       lrate=0.0001,
                       loss=None,
                       metrics=None):
+    '''
+    Creates a MHA for sequence modeling
+    :param input_size: Length of sequence
+    :param n_classes: Number of output classes
+    :param n_tokens: Number of distinct tokens
+    :param n_embedding: Desired size of embedding
+    :param pp_filters: Number of filters for preprocessing convolution
+    :param pp_activation: Activation for preprocessing convolution
+    :param pp_padding: Padding for preprocessing convolution
+    :param pp_strides: Strides for preprocessing convolution
+    :param pp_kernel_size: Kernel size for preprocessing convolution
+    :param num_heads: Number of attention heads per MHA layer; array
+    :param key_dim: Number of embedded dimensions per attention head per MHA layer; array
+    :param dense_layers: Number of nodes for dense layers: array
+    :param activation_dense: Activation function for dense layers
+    :param lambda_regularization: L2 regularization hyperparameter
+    :param grad_clip: Gradient clipping cutoff
+    :param lrate: Learning rate
+    :param loss: Loss function
+    :param metrics: Additional metrics to record
+    '''
     # Regularization
     if lambda_regularization is not None:
         lambda_regularization = tf.keras.regularizers.l2(lambda_regularization)
@@ -45,7 +66,7 @@ def create_simple_mha(input_size,
     for nh, kd in zip(num_heads, key_dim):
         tensor = MultiHeadAttention(num_heads=nh, key_dim=kd)(tensor, tensor)
 
-    # Blend tokens
+    # Reduce MHA output to single hyper token
     tensor = GlobalMaxPooling1D()(tensor)
 
     # Dense layers

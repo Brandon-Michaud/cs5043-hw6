@@ -27,16 +27,21 @@ def create_simple_gru(input_size,
                       loss=None,
                       metrics=None):
     '''
-    Creates a CNN for sequence modeling
+    Creates a GRU for sequence modeling
     :param input_size: Length of sequence
     :param n_classes: Number of output classes
     :param n_tokens: Number of distinct tokens
     :param n_embedding: Desired size of embedding
-    :param rnn_layers: Number of nodes for convolutional layers; array
+    :param pp_filters: Number of filters for preprocessing convolution
+    :param pp_activation: Activation for preprocessing convolution
+    :param pp_padding: Padding for preprocessing convolution
+    :param pp_strides: Strides for preprocessing convolution
+    :param pp_kernel_size: Kernel size for preprocessing convolution
+    :param gru_layers: Number of nodes for GRU layers; array
     :param dense_layers: Number of nodes for dense layers: array
     :param pool_size: Size for max pooling between layers
     :param padding: Type of padding to use; valid or same
-    :param activation_rnn: Activation function for recurrent layers
+    :param activation_gru: Activation function for GRU layers
     :param activation_dense: Activation function for dense layers
     :param unroll: Unroll RNN
     :param bidirectional: Make simple RNN layers bidirectional
@@ -59,7 +64,7 @@ def create_simple_gru(input_size,
     model.add(Conv1D(filters=pp_filters, kernel_size=pp_kernel_size, strides=pp_strides, padding=pp_padding,
                      activation=pp_activation))
 
-    # RNN layers
+    # GRU layers
     for i, n_neurons in enumerate(gru_layers):
         if bidirectional:
             model.add(Bidirectional(GRU(n_neurons,

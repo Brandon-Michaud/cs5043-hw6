@@ -183,7 +183,7 @@ def create_classifier_network(args, n_classes, n_tokens):
     :param n_classes: Number of output classes
     :param n_tokens: Number of distinct tokens
     '''
-    # Create RNN
+    # Create GRU
     if args.exp_type == 'gru':
         return create_simple_gru(args.sequence_length,
                                  n_classes,
@@ -207,7 +207,7 @@ def create_classifier_network(args, n_classes, n_tokens):
                                  lrate=args.lrate,
                                  loss=tf.keras.losses.SparseCategoricalCrossentropy(),
                                  metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
-    # Create CNN
+    # Create MHA
     elif args.exp_type == 'mha':
         return create_simple_mha(args.sequence_length,
                                  n_classes,

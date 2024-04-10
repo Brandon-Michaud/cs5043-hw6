@@ -4,6 +4,9 @@ import pickle
 
 
 def scatter_accuracies():
+    '''
+    Makes a scatter plot of model accuracies for GRU and MHA models
+    '''
     # Load accuracies from results files
     gru_test_accuracy = np.empty(5)
     mha_test_accuracy = np.empty(5)
@@ -32,6 +35,9 @@ def scatter_accuracies():
 
 
 def scatter_epochs():
+    '''
+    Makes a scatter plot of model epochs for GRU and MHA models
+    '''
     # Load epochs. Hard-coded because I forgot to save to pkl file. Values taken from wandb
     gru_epochs = [322, 398, 424, 389, 172]
     mha_epochs = [67, 28, 21, 32, 41]
